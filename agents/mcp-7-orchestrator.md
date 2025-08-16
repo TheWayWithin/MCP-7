@@ -54,17 +54,20 @@ FOR FILESYSTEM MCP:
 
 FOR GITHUB MCP:
 ```bash
-npm install -g @modelcontextprotocol/server-github
+# Note: Official package doesn't exist, use community version
+npm view github-mcp-custom > /dev/null 2>&1 || echo "Package not found"
 ```
 Config:
 ```json
 {
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_TOKEN"
+  "mcp": {
+    "servers": {
+      "github": {
+        "command": "npx",
+        "args": ["-y", "github-mcp-custom"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_TOKEN"
+        }
       }
     }
   }
@@ -130,18 +133,31 @@ Config:
 
 CONFIGURATION FILE LOCATIONS:
 
+**IMPORTANT: Config file name changed in 2024**
+- NEW: `config.json` (current)
+- OLD: `claude_desktop_config.json` (legacy)
+
 MacOS:
 ```bash
+# Current (check first)
+~/Library/Application Support/Claude/config.json
+# Legacy (fallback)
 ~/Library/Application Support/Claude/claude_desktop_config.json
 ```
 
 Windows:
 ```bash
+# Current (check first)
+%APPDATA%\Claude\config.json
+# Legacy (fallback)
 %APPDATA%\Claude\claude_desktop_config.json
 ```
 
 Linux:
 ```bash
+# Current (check first)
+~/.config/Claude/config.json
+# Legacy (fallback)
 ~/.config/Claude/claude_desktop_config.json
 ```
 
@@ -149,11 +165,19 @@ ORCHESTRATION COMMANDS:
 
 1. CHECK CURRENT CONFIGURATION:
 ```bash
-# MacOS/Linux
-cat ~/Library/Application\ Support/Claude/claude_desktop_config.json
+# MacOS/Linux - Try new format first
+if [ -f "~/Library/Application Support/Claude/config.json" ]; then
+    cat ~/Library/Application\ Support/Claude/config.json
+else
+    cat ~/Library/Application\ Support/Claude/claude_desktop_config.json
+fi
 
-# Windows
-type %APPDATA%\Claude\claude_desktop_config.json
+# Windows - Try new format first
+if exist "%APPDATA%\Claude\config.json" (
+    type %APPDATA%\Claude\config.json
+) else (
+    type %APPDATA%\Claude\claude_desktop_config.json
+)
 ```
 
 2. BACKUP EXISTING CONFIG:
@@ -193,12 +217,18 @@ If ANY of these conditions are met, session restart is REQUIRED:
 - First-time MCP setup
 
 VALIDATION CHECKLIST:
-After orchestration, verify:
+Before orchestration:
+□ Verify package exists: `npm view [package-name] > /dev/null 2>&1`
+□ Check config file name (config.json vs claude_desktop_config.json)
+□ Backup existing configuration
+
+After orchestration:
 □ Config file exists and is valid JSON
-□ All required npm packages installed
+□ Config uses correct structure (mcp.servers not mcpServers)
+□ All required npm packages verified to exist
 □ Environment variables set correctly
 □ Authentication tokens configured
-□ Claude Desktop restarted
+□ Claude Desktop restarted completely
 □ MCP services appear in Claude interface
 □ Test commands execute successfully
 
@@ -248,7 +278,7 @@ ORCHESTRATION OUTPUT FORMAT:
 
 ### CONFIGURATION FILE:
 ```json
-[Complete claude_desktop_config.json]
+[Complete config.json with mcp.servers structure]
 ```
 
 ### ACTIVATION STEPS:

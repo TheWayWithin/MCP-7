@@ -24,15 +24,28 @@ detect_os() {
 
 # Get config file path based on OS
 get_config_path() {
+    # Check for new config.json first, fall back to old name
     case "$OS" in
         macos)
-            echo "$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+            if [ -f "$HOME/Library/Application Support/Claude/config.json" ]; then
+                echo "$HOME/Library/Application Support/Claude/config.json"
+            else
+                echo "$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+            fi
             ;;
         linux)
-            echo "$HOME/.config/Claude/claude_desktop_config.json"
+            if [ -f "$HOME/.config/Claude/config.json" ]; then
+                echo "$HOME/.config/Claude/config.json"
+            else
+                echo "$HOME/.config/Claude/claude_desktop_config.json"
+            fi
             ;;
         windows)
-            echo "$APPDATA/Claude/claude_desktop_config.json"
+            if [ -f "$APPDATA/Claude/config.json" ]; then
+                echo "$APPDATA/Claude/config.json"
+            else
+                echo "$APPDATA/Claude/claude_desktop_config.json"
+            fi
             ;;
         *)
             echo ""
@@ -75,7 +88,7 @@ check_mcp_services() {
     echo -e "\n${BLUE}Configured MCP Services:${NC}"
     
     if [ -f "$config_path" ]; then
-        # Parse JSON and list services
+        # Parse JSON and list services (handle both old and new formats)
         python3 -c "
 import json
 import sys
@@ -83,7 +96,11 @@ import sys
 try:
     with open('$config_path', 'r') as f:
         config = json.load(f)
-        services = config.get('mcpServers', {})
+        # Check for new format (mcp.servers) or old format (mcpServers)
+        services = config.get('mcp', {}).get('servers', {})
+        if not services:
+            services = config.get('mcpServers', {})
+        
         if not services:
             print('  No MCP services configured')
         else:
