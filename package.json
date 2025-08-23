@@ -1,0 +1,67 @@
+{
+  "name": "mcp-7-discovery",
+  "version": "3.0.0",
+  "description": "MCP-7 GitHub Discovery Engine - Automatically discover and catalog Model Context Protocol servers",
+  "main": "src/discovery/orchestrator.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node src/discovery/super-orchestrator.js",
+    "legacy": "node src/discovery/orchestrator.js",
+    "scan": "node src/discovery/github-scanner.js",
+    "analyze": "node src/discovery/repo-analyzer.js",
+    "detect": "node src/discovery/mcp-detector.js",
+    "pulsemcp": "node src/discovery/pulsemcp-client.js",
+    "sync": "node src/discovery/pulsemcp-sync.js",
+    "merge": "node src/discovery/data-merger.js",
+    "health": "node src/discovery/health-monitor.js",
+    "demo": "./scripts/demo-pulsemcp-integration.sh",
+    "test": "node --test tests/**/*.test.js",
+    "test:watch": "node --test --watch tests/**/*.test.js",
+    "dev": "node --watch src/discovery/super-orchestrator.js",
+    "lint": "eslint src/ tests/",
+    "format": "prettier --write src/ tests/"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "github",
+    "discovery",
+    "orchestration",
+    "claude",
+    "anthropic"
+  ],
+  "author": "MCP-7 Team",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^20.0.2",
+    "@octokit/auth-app": "^6.0.1",
+    "@octokit/plugin-throttling": "^8.1.3",
+    "@octokit/request-error": "^5.0.1",
+    "sqlite3": "^5.1.6",
+    "node-fetch": "^3.3.2",
+    "semver": "^7.5.4",
+    "yaml": "^2.3.4",
+    "marked": "^9.1.6",
+    "cheerio": "^1.0.0-rc.12",
+    "zod": "^3.22.4",
+    "p-limit": "^5.0.0",
+    "p-queue": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "eslint": "^8.52.0",
+    "prettier": "^3.0.3",
+    "nodemon": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheWayWithin/MCP-7.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheWayWithin/MCP-7/issues"
+  },
+  "homepage": "https://github.com/TheWayWithin/MCP-7#readme"
+}
