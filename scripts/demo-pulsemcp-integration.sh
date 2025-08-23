@@ -95,15 +95,15 @@ if [ -f "data/mcp-discovery.db" ]; then
 .mode column
 .headers on
 
-SELECT 'PulseMCP Servers' as Table, COUNT(*) as Count FROM pulsemcp_servers WHERE COUNT(*) > 0
+SELECT 'PulseMCP Servers' as "Table", COUNT(*) as Count FROM pulsemcp_servers
 UNION ALL
-SELECT 'PulseMCP Categories' as Table, COUNT(*) as Count FROM pulsemcp_categories WHERE COUNT(*) > 0
+SELECT 'PulseMCP Categories', COUNT(*) FROM pulsemcp_categories
 UNION ALL
-SELECT 'Merged Servers' as Table, COUNT(*) as Count FROM merged_servers WHERE COUNT(*) > 0
+SELECT 'Merged Servers', COUNT(*) FROM merged_servers
 UNION ALL
-SELECT 'Health Measurements' as Table, COUNT(*) as Count FROM health_measurements WHERE COUNT(*) > 0
+SELECT 'Health Measurements', COUNT(*) FROM health_measurements
 UNION ALL
-SELECT 'GitHub Repositories' as Table, COUNT(*) as Count FROM repositories WHERE COUNT(*) > 0;
+SELECT 'GitHub Repositories', COUNT(*) FROM repositories;
 
 .quit
 EOF
