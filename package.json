@@ -9,6 +9,8 @@
   },
   "scripts": {
     "start": "node src/discovery/super-orchestrator.js",
+    "setup": "./scripts/setup-env.sh",
+    "env:check": "node -e \"console.log('GitHub Token:', process.env.GITHUB_TOKEN ? 'Set ✓' : 'Not set ✗'); console.log('PulseMCP Key:', process.env.PULSEMCP_API_KEY ? 'Set ✓' : 'Not set (using mock) ✓')\"",
     "legacy": "node src/discovery/orchestrator.js",
     "scan": "node src/discovery/github-scanner.js",
     "analyze": "node src/discovery/repo-analyzer.js",

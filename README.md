@@ -1,38 +1,64 @@
-# MCP-7: Intelligent MCP Service Orchestrator 🎯
+# MCP-7: Super Discovery Engine v3.0 🚀
 
-> Analyze any project and get optimal MCP service recommendations that reduce delivery time by 30-50%
+> **GitHub + PulseMCP Integration**: Discover, analyze, and monitor 5,670+ MCP servers with real-time health tracking and intelligent recommendations
 
 ## What is MCP-7?
 
-MCP-7 is an intelligent agent that analyzes your project requirements and recommends the perfect combination of Model Context Protocol (MCP) services to accelerate development and improve quality. Think of it as your personal MCP consultant that knows the entire ecosystem and can instantly match your needs to the right tools.
+MCP-7 is the most comprehensive MCP discovery engine, combining GitHub repository analysis with PulseMCP's curated directory of 5,670+ servers. It provides intelligent project analysis, real-time health monitoring, and data-driven recommendations to accelerate development by 30-50%.
 
-## Quick Start (2 minutes)
+## 🆕 New in v3.0: PulseMCP Integration
 
-### 1. Install MCP-7 in your project
+- **📡 Complete Directory Coverage**: Access to 5,670+ verified MCP servers
+- **🔄 Daily Sync**: Automated synchronization with PulseMCP directory
+- **🏥 Health Monitoring**: Real-time server health and trend analysis
+- **🔗 Smart Data Merging**: Combines GitHub discoveries with PulseMCP metadata
+- **📊 Enhanced Scoring**: Confidence boosting for verified, healthy servers
+- **⚡ Production Ready**: Built for scale with proper error handling and fallbacks
 
+## Quick Start
+
+### 🔧 Environment Setup (First Time)
 ```bash
-# Clone MCP-7 into your project
-curl -sSL https://raw.githubusercontent.com/TheWayWithin/MCP-7/main/deployment/scripts/install.sh | bash
-
-# Or manually add to your project
-mkdir -p .claude/agents
-curl -o .claude/agents/mcp-7.md https://raw.githubusercontent.com/TheWayWithin/MCP-7/main/.claude/agents/mcp-7.md
+git clone https://github.com/TheWayWithin/MCP-7.git
+cd MCP-7
+npm install
+npm run setup  # Interactive environment configuration
 ```
 
-### 2. Activate MCP-7 in Claude
+The setup wizard will help you configure:
+- GitHub Personal Access Token (for API access)
+- PulseMCP API Key (optional, uses mock data if not set)
+- Discovery engine parameters
+- Environment settings
 
-Simply tell Claude:
+### 🚀 Try the Demo (2 minutes)
+```bash
+# After setup, run the demo with mock data
+npm run demo
 ```
-Use the MCP-7 agent to analyze my project and recommend MCP services
+
+### ⚡ Super Discovery (Production)
+```bash
+# Full discovery with GitHub + PulseMCP
+npm start
+
+# GitHub discovery only
+npm start -- --github-only --limit 100
+
+# PulseMCP sync only  
+npm run sync
+
+# Health monitoring service
+npm start -- --health-service
 ```
 
-### 3. Get Your Recommendations
-
-MCP-7 will analyze your project and provide:
-- Essential MCPs with confidence scores
-- Exact installation commands
-- Integration strategy
-- Expected time savings (30-50%)
+### 🔧 Individual Components
+```bash
+npm run pulsemcp    # Test PulseMCP API
+npm run sync        # Sync PulseMCP directory
+npm run merge       # Merge GitHub + PulseMCP data
+npm run health      # Health monitoring check
+```
 
 ## Example Usage
 
@@ -104,6 +130,32 @@ Only recommends MCPs with 60%+ confidence.
 - ✅ Content Creation
 - ✅ DevOps/Infrastructure
 - ✅ Enterprise Systems
+
+## Environment Configuration
+
+### Required API Keys
+
+1. **GitHub Personal Access Token** (Recommended)
+   - Get yours at: https://github.com/settings/tokens
+   - Required scopes: `public_repo`
+   - Enables 5,000 requests/hour (vs 60 without)
+
+2. **PulseMCP API Key** (Optional)
+   - Contact: https://www.pulsemcp.com
+   - Without key: Uses mock data (perfect for testing!)
+
+### Configuration Files
+
+- **`.env.template`** - Complete template with all options
+- **`.env.example`** - Working example for quick start
+- **`.env`** - Your actual configuration (create from template)
+
+### Manual Configuration
+```bash
+# Copy template and edit
+cp .env.template .env
+nano .env  # or your favorite editor
+```
 
 ## Installation Options
 
