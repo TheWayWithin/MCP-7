@@ -1,0 +1,31 @@
+# gitleaks config for mcp-7.
+#
+# Written 2026-08-06. The global pre-commit hook blocked the agent-11 framework
+# commit on .claude/agents/documenter.md:270, which shows an illustrative API
+# response:
+#
+#     "tokens": { "access": "eyJhbGciOiJIUzI1NiIs...", ... }
+#
+# beside "usr_123456" and "user@example.com". gitleaks' generic-api-key rule
+# sees a key-shaped assignment holding a real JWT header prefix
+# (eyJhbGciOiJIUzI1NiIs decodes to {"alg":"HS256","...) and scores it at 3.8
+# entropy. It is documentation. The same literal is committed in agent-11
+# itself, in templates/mission-inputs/bug-report-example.md.
+#
+# The allowlist is deliberately narrow: it matches only the TRUNCATED form,
+# ending in a literal "...". A real leaked token never ends in an ellipsis, so
+# this cannot exempt an actual credential. It is scoped by secret regex rather
+# than by path, so allowlisting a documentation example does not stop scanning
+# any file — including documenter.md itself.
+#
+# Everything else keeps the default ruleset. Never widen this to a path or file
+# exclusion, and never reach for --no-verify instead.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Truncated JWT header used as a documentation example, never a real token"
+regexes = [
+  '''eyJhbGciOiJIUzI1NiIs\.\.\.''',
+]

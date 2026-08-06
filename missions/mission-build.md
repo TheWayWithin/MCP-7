@@ -18,10 +18,25 @@ Transform product requirements into production-ready implementation. This missio
 
 ## Mission Phases
 
-### Phase 1: Strategic Analysis (30-45 minutes)
+### Phase 1: Strategic Analysis (30-45 minutes) - IMMEDIATE ACTION
 
 **Lead**: @strategist  
 **Objective**: Transform requirements into actionable user stories
+
+**COORDINATOR PROTOCOL**:
+1. **UPDATE project-plan.md** with Phase 1 tasks:
+   ```markdown
+   ## Mission: BUILD [Feature Name]
+   
+   ### Phase 1: Strategic Analysis (In Progress)
+   - [ ] Create detailed user stories in INVEST format (assigned to @strategist)
+   - [ ] Define clear acceptance criteria (assigned to @strategist)
+   - [ ] Identify edge cases and error states (assigned to @strategist)
+   - [ ] Prioritize features for MVP vs future iterations (assigned to @strategist)
+   - [ ] Define success metrics and KPIs (assigned to @strategist)
+   ```
+
+2. **IMMEDIATELY CALL @strategist** - do not plan or wait
 
 ```bash
 @strategist Review the provided requirements and:
@@ -32,16 +47,22 @@ Transform product requirements into production-ready implementation. This missio
 5. Define success metrics and KPIs
 ```
 
+3. **WAIT FOR @strategist RESPONSE** 
+4. **UPDATE project-plan.md** mark completed tasks [x] and add Phase 2 tasks
+5. **LOG TO progress.md** any issues encountered during this phase
+
 **Deliverables**:
 - User stories with acceptance criteria
 - Feature prioritization matrix
 - Success metrics defined
 
-### Phase 2: Technical Architecture (30-45 minutes)
+### Phase 2: Technical Architecture (30-45 minutes) - IMMEDIATE ACTION
 
 **Lead**: @architect  
 **Support**: @developer  
 **Objective**: Design robust technical foundation
+
+**COORDINATOR ACTION**: After @strategist completes, immediately call @architect
 
 ```bash
 @architect Based on the requirements and user stories:
@@ -51,6 +72,8 @@ Transform product requirements into production-ready implementation. This missio
 4. Identify integration points
 5. Document architectural decisions and trade-offs
 ```
+
+**WAIT FOR @architect RESPONSE** before proceeding to Phase 3
 
 **Deliverables**:
 - Architecture design document

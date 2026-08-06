@@ -7,6 +7,15 @@ Thumbs.db
 .env.local
 .env.mcp
 
+# agent-11 install backups. Five dated snapshots from 2025 sit here, each a full
+# copy of the agents/missions/templates of the day. They are install artefacts,
+# not work, and committing them would bloat the repo permanently. install.sh
+# writes backups outside the repo as of 2026-08-05; these historic ones are safe
+# to delete once checked.
+.claude/backups/
+.claude/*.backup-*
+.claude/settings.json.backup-*
+
 # MCP: keep the templates, ignore the resolved config and the generated status
 # report. .mcp.json currently holds only ${VAR} interpolations, but it is the
 # file that would hold real values if anyone ever inlined one, and .mcp-status.md
