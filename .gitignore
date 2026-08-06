@@ -7,6 +7,23 @@ Thumbs.db
 .env.local
 .env.mcp
 
+# MCP: keep the templates, ignore the resolved config and the generated status
+# report. .mcp.json currently holds only ${VAR} interpolations, but it is the
+# file that would hold real values if anyone ever inlined one, and .mcp-status.md
+# is machine state written by mcp-setup.sh, not source.
+.mcp.json
+.mcp-status.md
+
+# SQLite runtime databases. data/mcp-discovery.db is written by the discovery
+# engine; the -wal and -shm sidecars are only meaningful beside the exact db
+# that produced them, so committing the set captures one machine's
+# mid-transaction state and conflicts on every pull.
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
 # IDE
 .vscode/
 .idea/
