@@ -112,7 +112,7 @@ Production Environment:
 #### Database Infrastructure (Neon)
 - **Provider**: Neon Tech (Managed PostgreSQL)
 - **Configuration**: Pooled connections with SSL enforcement
-- **Connection String**: `postgresql://neondb_owner:npg_QcNpixbZ7T9H@ep-dark-fire-ae795ogn-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
+- **Connection String**: `postgresql://neondb_owner:REDACTED_ROTATED_2026_08_11@ep-dark-fire-ae795ogn-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
 - **Features**:
   - Automatic backups and point-in-time recovery
   - Connection pooling for performance
@@ -557,7 +557,7 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 **Backend (Railway):**
 ```bash
 # Database
-DATABASE_URL=postgresql://neondb_owner:npg_...@ep-dark-fire...
+DATABASE_URL=postgresql://neondb_owner:REDACTED_ROTATED_2026_08_11@ep-dark-fire...
 
 # API Keys
 OPENAI_API_KEY=sk-...
