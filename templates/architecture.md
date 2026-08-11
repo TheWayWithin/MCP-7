@@ -112,7 +112,7 @@ Production Environment:
 #### Database Infrastructure (Neon)
 - **Provider**: Neon Tech (Managed PostgreSQL)
 - **Configuration**: Pooled connections with SSL enforcement
-- **Connection String**: `postgresql://neondb_owner:REDACTED_ROTATED_2026_08_11@ep-dark-fire-ae795ogn-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
+- **Connection String**: ⚠️ **REMOVED 2026-08-11 — this was wrong.** The string that sat here was `ep-dark-fire-ae795ogn`, which is the **llm-txt-mastery** production database, not this project's. It arrived by copy-paste between architecture docs and was never true of this repo. Its password has since been rotated, so nothing here is a live credential. **Do not treat any database identifier in this file as authoritative** — read the deployment platform's `DATABASE_URL` for this service instead. A doc that names the wrong database is worse than one that names none, because a responder believes it.
 - **Features**:
   - Automatic backups and point-in-time recovery
   - Connection pooling for performance
